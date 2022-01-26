@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const useUserStore = defineStore({
-  id: 'user', // id必填，且需要唯一
-  state: () => {
-    return {
-      name: '张三',
-      token: ''
-    }
+export const useUserStore = defineStore('user', () => {
+  const count = ref(0)
+
+  const increment = () => {
+    count.value++
   }
+
+  return { count, increment }
 })

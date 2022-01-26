@@ -5,19 +5,19 @@ import { useUserStore } from '../store/user'
 import { BASE_URL, TIME_OUT } from './request/config'
 export default new WQRequest({
   baseURL: BASE_URL,
-  timeout: TIME_OUT
-  // interceptors: {
-  //   requestInterceptor: (config) => {
-  //     return config
-  //   },
-  //   requestInterceptorCatch: (error) => {
-  //     return error
-  //   },
-  //   responseInterceptor: (config) => {
-  //     return config
-  //   },
-  //   responseInterceptorCatch: (error) => {
-  //     return error
-  //   }
-  // }
+  timeout: TIME_OUT,
+  interceptors: {
+    requestInterceptor: (config) => {
+      return config
+    },
+    requestInterceptorCatch: (error) => {
+      return error
+    },
+    responseInterceptor: (config) => {
+      return config
+    },
+    responseInterceptorCatch: (error) => {
+      return error
+    }
+  }
 })
