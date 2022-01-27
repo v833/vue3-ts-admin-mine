@@ -10,7 +10,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       components: '@/components'
-    }
+    },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
   server: {
     open: true, // 编译完成是否打开网页

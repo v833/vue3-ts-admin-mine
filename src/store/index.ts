@@ -1,5 +1,7 @@
-import { createPinia } from 'pinia'
+import { useUserStore } from './user'
 
-const store = createPinia()
-
-export default store
+const appStore: any = {}
+export const registerStore = () => {
+  appStore.useUserStore = useUserStore()
+}
+export default appStore
