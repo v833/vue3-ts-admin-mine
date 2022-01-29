@@ -9,7 +9,7 @@ export default new WQRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // 拦截token
-      const token = LocalCache.getCache('token')
+      const token = LocalCache.getCache('userToken')
       if (token) {
         ;(config.headers as any).Authorization = `Bearer ${token}`
       }
