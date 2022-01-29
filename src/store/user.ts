@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-
+import { accountLoginRequest } from '@/service/login'
+import { IAccount } from '@/service/login/type'
 export const useUserStore = defineStore('user', () => {
-  const count = ref(0)
+  const accountLoginAction = async (payload: IAccount) => {
+    const loginResult = await accountLoginRequest(payload).then(res => res.data)
+    console.log('loginResult: ', loginResult)
 
-  const increment = () => {
-    count.value++
   }
 
-  return { count, increment }
+  return { accountLoginAction }
 })

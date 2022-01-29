@@ -17,7 +17,7 @@ export default defineConfig({
     open: true, // 编译完成是否打开网页
     proxy: {
       '/api': {
-        target: 'http://152.136.185.210:4000', //API服务器的地址
+        target: 'http://152.136.185.210:5000', //API服务器的地址
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

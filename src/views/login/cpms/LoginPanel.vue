@@ -40,7 +40,7 @@ import LoginPhone from './LoginPhone'
 const isKeepPassword = ref(true)
 const accountRef = ref<InstanceType<typeof LoginAccount>>()
 const handleLoginClick = () => {
-  accountRef.value.loginAction()
+  accountRef.value.loginAction(isKeepPassword.value)
 }
 </script>
 <style lang="scss">

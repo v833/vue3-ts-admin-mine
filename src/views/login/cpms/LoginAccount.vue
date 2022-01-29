@@ -13,6 +13,7 @@
           v-model="account.password"
           type="password"
           autocomplete="off"
+          show-password
         ></el-input>
       </el-form-item>
     </el-form>
@@ -23,17 +24,29 @@
 import { ref, reactive } from 'vue'
 import type { ElForm } from 'element-plus'
 import { rules } from '../config/account-config'
+import localCache from '@/utils/cache'
+import appStore from '@/store'
 
 const account = reactive({
-  name: '',
-  password: ''
+  name: localCache.getCache('name') ?? '',
+  password: localCache.getCache('password') ?? ''
 })
+// TODO
 const formRef = ref<InstanceType<typeof ElForm>>()
-const loginAction = () => {
+const loginAction = (isKeepPassword: boolean) => {
   formRef.value.validate((valid) => {
     if (valid) {
+      // 判断是否需要记住密码
+      if (isKeepPassword) {
+        localCache.setCache('name', account.name)
+        localCache.setCache('password', account.password)
+      } else {
+        localCache.deleteCache('name')
+        localCache.deleteCache('password')
+      }
     }
   })
+  appStore.useUserStore.accountLoginAction(account)
 }
 
 defineExpose({
