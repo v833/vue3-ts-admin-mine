@@ -56,7 +56,7 @@ class WQRequest {
         if (data.returnCode === '-1001') {
           console.log('请求失败~, 错误信息')
         } else {
-          return data
+          return data.data
         }
       },
       (err) => {
