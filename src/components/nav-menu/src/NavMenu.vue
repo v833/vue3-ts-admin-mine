@@ -11,10 +11,8 @@
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
       :unique-opened="true"
-      @open="handleOpen"
-      @close="handleClose"
     >
-      <template v-for="item of menus" :key="item.id + ''">
+      <template v-for="item in menus" :key="item.id + ''">
         <template v-if="item.type === 1">
           <el-sub-menu :index="item.id + ''">
             <template #title>
@@ -24,7 +22,10 @@
               <span>{{ item.name }}</span></template
             >
             <template v-for="subitem of item.children" :index="subitem.id + ''">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuItemClick(subitem)"
+              >
                 <template #title>
                   <el-icon><Document /></el-icon
                   ><span>{{ subitem.name }}</span></template
@@ -47,14 +48,20 @@
 import { ref, computed } from 'vue'
 import appStore from '@/store'
 import { Location, Document } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 const props = defineProps({
   isCollapse: {
     type: Boolean
   }
 })
 const menus = computed(() => appStore.useUserStore.userMenus)
-const handleOpen = () => {}
-const handleClose = () => {}
+const router = useRouter()
+const handleMenuItemClick = (item: any) => {
+  console.log(item.url)
+  router.push({
+    path: item.url ?? '/not-found'
+  })
+}
 </script>
 <style lang="scss">
 .nav-menu {
