@@ -41,7 +41,6 @@ export const useUserStore = defineStore(
       // 跳转首页
       router.push('/main')
     }
-
     return { token, userInfo, userMenus, accountLoginAction, getUserMenus }
   },
   {
